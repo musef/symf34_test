@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ProfesorAsignatura" table="profesor_asignatura">
+    <indexes>
+      <index name="id_asignatura" columns="id_asignatura"/>
+      <index name="id_profesor" columns="id_profesor"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idProfesor" target-entity="Profesor" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_profesor" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idAsignatura" target-entity="Asignatura" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_asignatura" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

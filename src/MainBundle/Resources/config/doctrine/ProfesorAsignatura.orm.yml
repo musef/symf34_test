@@ -1,0 +1,43 @@
+MainBundle\Entity\ProfesorAsignatura:
+    type: entity
+    repositoryClass: MainBundle\Repository\ProfesorAsignaturaRepository
+    
+    table: profesor_asignatura
+    indexes:
+        id_asignatura:
+            columns:
+                - id_asignatura
+        id_profesor:
+            columns:
+                - id_profesor
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idProfesor:
+            targetEntity: Profesor
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_profesor:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idAsignatura:
+            targetEntity: Asignatura
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_asignatura:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

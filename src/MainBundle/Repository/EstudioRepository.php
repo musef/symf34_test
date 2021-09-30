@@ -4,6 +4,7 @@ namespace MainBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use \PDOException;
+use Exception;
 
 class EstudioRepository extends EntityRepository {
     
@@ -51,7 +52,7 @@ class EstudioRepository extends EntityRepository {
         
         try {
 
-            $sql = " SELECT * FROM university.estudio WHERE nombre LIKE :name";            
+            $sql = " SELECT * FROM estudio WHERE nombre LIKE :name";            
             
             $em = $this->getEntityManager();
                        

@@ -4,6 +4,7 @@ namespace MainBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use \PDOException;
+use Exception;
 
 class ProfesorAsignaturaRepository extends EntityRepository {
     

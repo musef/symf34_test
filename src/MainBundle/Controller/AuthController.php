@@ -4,6 +4,7 @@ namespace MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MainBundle\Controller\interfaces\AuthenticationInterface;
+use Exception;
 
 
 class AuthController extends Controller implements AuthenticationInterface
@@ -16,13 +17,38 @@ class AuthController extends Controller implements AuthenticationInterface
      * @param type $apikey
      * @return type
      */
-    public function checkAuthentication(string $apikey):bool {
+    public function checkAuthentication(string $apikey):bool {        
         
-        $apikey = $this->cleanInput(base64_decode($apikey));
-        
-        $resp = ($apikey == self::API_KEY) ? true : false;
-        
+        $result = $this->showAuthentication($apikey);    
+
+        $resp = ($result['apikey'] == self::API_KEY) ? true : false;
+
         return $resp;
+    }
+
+    
+    /**
+     * Este método obtiene la autenticación y la fecha de validez
+     * de una apikey encriptada recibida por la API
+     * 
+     * @param string $apikey codificada
+     * @return - array con resultados
+     */
+    public function showAuthentication(string $apikey) {
+
+        // OCULTO POR SEGURIDAD
+        
+    }
+
+    
+    /**
+     *
+     * @return type
+     */
+    public function generateApiAuthorization() {
+        
+        // OCULTO POR SEGURIDAD
+        
     }
     
     
@@ -36,7 +62,7 @@ class AuthController extends Controller implements AuthenticationInterface
         
         $input = strip_tags(trim($input));
         
-        $forbidden = array("&", "%", "!", "$", "[", "]", "{", "}", "=", "?", ";", ",");
+        $forbidden = array("&", "%", "!", "$", "[", "]", "{", "}", "?", ";", ",");
 
         $input = str_replace($forbidden,"",$input);
         
